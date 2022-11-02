@@ -1,0 +1,29 @@
+version: '3'
+
+# dbとwebサービスの立ち上げ
+services:
+  # dbはMySQLを使う
+  db:
+    platform: linux/x86_64  # M1 Macなどで必要
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: django-db
+      MYSQL_USER: django
+      MYSQL_PASSWORD: django
+      TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_HOST: '%'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  # 文字化け対策
+
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code  # ソースコードを管理するフォルダ
+      - .:/pip-lib  # ライブラリを管理するフォルダ
+    environment:
+      PYTHONUSERBASE: /pip-lib  # コンテナをbuildしなおさずにpip installでライブラリを更新できる
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db  # dbを起動してからwebを起動する
