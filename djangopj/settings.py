@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'esupporter',
     'widget_tweaks',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [
