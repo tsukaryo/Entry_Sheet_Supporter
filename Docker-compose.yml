@@ -2,18 +2,18 @@ version: '3'
 
 # dbとwebサービスの立ち上げ
 services:
-  # dbはMySQLを使う
+  # dbはpostgresを使う
   db:
     platform: linux/x86_64  # M1 Macなどで必要
-    image: mysql:5.7
+    image: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: django-db
-      MYSQL_USER: django
-      MYSQL_PASSWORD: django
-      TZ: 'Asia/Tokyo'
-      MYSQL_ROOT_HOST: '%'
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  # 文字化け対策
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   web:
     build: .
@@ -27,3 +27,22 @@ services:
       - "8000:8000"
     depends_on:
       - db  # dbを起動してからwebを起動する
+
+  # pgadminを使う
+  # https://chigusa-web.com/blog/django-docker-postgres/
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+        - 8888:80
+    volumes:
+        - pgadmin4_data:/var/lib/pgadmin
+    environment:
+        PGADMIN_DEFAULT_EMAIL: xxxxxxxxxx@gmail.com
+        PGADMIN_DEFAULT_PASSWORD: password
+    depends_on:
+      - db
+        
+
+volumes:
+  postgres_data:
+  pgadmin4_data:
