@@ -24,14 +24,14 @@
         <h1 class="is-size-3"><strong>企業一覧</strongf></h1>
     </div>
     <div class="has-text-right">
-        <form action="" method="post">
+        <form action="{% url 'company_list' %}" method="POST">
             {% csrf_token %}
             <div class="field has-addons">
                 <div class="control">
                     <input class ="input" name="SearchBox" type="text" placeholder="企業名検索"></input>
                 </div>
                 <div class="control">
-                    <button type="submit"class="button is-info"></i>検索</button>  
+                    <button type="submit"class="button is-info">検索</button>  
                 </div>
             </div>
         </form> 
