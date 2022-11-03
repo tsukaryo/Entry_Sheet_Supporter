@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>ESupporter</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
         {% block css %}
         {% endblock %} 
     </head>
@@ -25,18 +28,15 @@
                 </div>
             
                 <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-    
                 {% if user.is_authenticated %}
+                <div class="navbar-start">
                     <a href="{% url 'company_list' %}" class="navbar-item">
                     ES管理
                     </a>
-            
                     <div class="navbar-item has-dropdown is-hoverable">
                     <a href="{% url 'question_list' %}" class="navbar-link">
                         AI文章要約
                     </a>
-            
                     <div class="navbar-dropdown">
                         <a class="navbar-item">
                         あ
@@ -54,19 +54,17 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="navbar-end">
                     <div class="navbar-item">
                     <div class="buttons">
                         <a href="{% url 'logout' %}" class="button is-danger">
-                        <strong>logout</strong>
+                        <strong>ログアウト</strong>
                         </a>
                     </div>
                     </div>
                 </div>
                 {% else %}
                 
-
                 <div class="navbar-end">
                     <div class="navbar-item">
                     <div class="buttons">
@@ -80,9 +78,7 @@
                     </div>
                 </div>
                 {% endif %}
-
             </nav>
-            
             {% block content %}
             {% endblock %} 
         </div>

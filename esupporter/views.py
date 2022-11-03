@@ -59,7 +59,19 @@ class CompanyListView(LoginRequiredMixin, ListView):
     model = Company
     def get_queryset(self, **kwargs):
         query_set = Company.objects.filter(user_id=self.request.user.id)
-        return query_set
+        print(len(query_set))
+        #Post処理(検索時)
+        if self.request.method == "POST":
+            print(len(query_set))
+            search_name = self.request.GET.get('SearchBox')
+            if search_name:
+                print(search_name)
+                queryset = Company.objects.filter(company_name__contains=search_name)
+            return queryset
+        else:
+            return query_set
+        
+
 
 # 会社登録ページ
 class CompanyCreateFormView(LoginRequiredMixin, CreateView):

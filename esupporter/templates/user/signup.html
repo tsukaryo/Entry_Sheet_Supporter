@@ -1,6 +1,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block css %}
 {% endblock %}
@@ -10,38 +11,57 @@
 <br><br>
 
 <div class="has-text-centered">
-    <h1 class="title">サインアップ</h1>
+  <h1 class="title"><strong>新規登録</strong></h1>
 </div>
-<form method="POST" class="box has-text-centered">
-    {% csrf_token %}
-    <div class="field">
-        <label class="label">名前</label>
-        <div class="control">
-           {{ form.name }}
+
+<br>
+
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+    <div class="box">
+      <form method="POST" class="box">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">名前</label>
+          <p class="control has-icons-left has-icons-right">
+            {{ form.name |add_class:"input"|append_attr:"placeholder:名前"}}
+            <span class="icon is-small is-left">
+              <i class="fa-regular fa-file-signature"></i>
+            </span>
+          </p>
         </div>
-      </div>
-    <div class="field">
-        <label class="label">メールアドレス</label>
-        <div class="control">
-           {{ form.email }}
+        <div class="field">
+          <label class="label">メールアドレス</label>
+          <p class="control has-icons-left">
+            {{ form.email |add_class:"input"|append_attr:"placeholder:Password"|append_attr:"type:email"}}
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
         </div>
-      </div>
-      <div class="field">
-        <label class="label">パスワード</label>
-        <div class="control">
-            {{ form.password1 }}
+        <div class="field">
+          <label class="label">パスワード</label>
+          <p class="control has-icons-left">
+            {{ form.password1 |add_class:"input"|append_attr:"placeholder:Password"|append_attr:"type:password"}}
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
         </div>
-      </div>
-      <div class="field">
-        <label class="label">パスワード(確認)</label>
-        <div class="control">
-            {{ form.password2 }}
+        <div class="field">
+          <label class="label">パスワード(確認用)</label>
+          <p class="control has-icons-left">
+            {{ form.password2 |add_class:"input"|append_attr:"placeholder:Password(確認)"|append_attr:"type:password"}}
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
         </div>
-      </div>
-    
-    <br></br>
-    <button type="submit" class="button is-primary">新規登録</button>
-    <a href="{% url 'index'%}" class="button is-primary">戻る</a>
-</form>
+        <button type="submit" class="button is-primary">新規登録</button>
+        <a href="{% url 'index'%}" class="button is-primary">戻る</a>
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
