@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+<br><br>
+<form method="post">
+    {% csrf_token %}
+    <h3 class="title is-3">質問を削除しますか？</h1>
+
+    <table class="table table-sm table-bordered table-responsive">
+        <tbody>
+            <tr>
+                <th>質問</th>
+                <td>{{ object.question }}</td>
+            </tr>
+            <tr>
+                <th>回答</th>
+                <td>{{ object.answer }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="block">
+        <button type="submit" class="button is-warning">削除する</button>
+    </div>
+    <div class="block">
+        <a href="{% url 'es_list' pk=object.company_id %}" class="button is-link">戻る</a>
+    </div>
+</form>
+
+
+
+{% endblock %}

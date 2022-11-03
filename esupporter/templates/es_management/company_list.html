@@ -1,0 +1,59 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block css %} 
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<br>
+{% for message in messages %}
+<div class="columns is-centered ">
+    <div class="column is-11"  style="background: rgb(249, 252, 252);">
+        <div class="notification is-primary" class="mx-10">
+            <button class="delete"></button>
+            <h2 class="subtitle">{{ message }}</h2>
+        </div>
+    </div> 
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="block">
+    <div class="has-text-centered">
+        <h1 class="is-size-3"><strong>企業一覧</strongf></h1>
+    </div>
+    <div class="has-text-right">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="field has-addons">
+                <div class="control">
+                    <input class ="input" name="SearchBox" type="text" placeholder="企業名検索"></input>
+                </div>
+                <div class="control">
+                    <button type="submit"class="button is-info"></i>検索</button>  
+                </div>
+            </div>
+        </form> 
+    </div>
+
+    
+</div>
+
+
+    <br>
+
+    <div class="block">
+        {% for company in object_list %}
+            <!--p>{{company.company_name}}</p>-->
+            <a href="{% url 'es_list' pk=company.id %}" class="box is-white">{{company.company_name}}</a>
+        {% endfor %}
+    
+        <div class="block">
+                <a href="{% url 'create_company' %}" class="button is-primary">企業を追加</a>
+                <a href="{% url 'mypage' %}" class="button is-primary">マイページへ戻る</a>
+        </div>
+        <br>
+    </div>
+
+{% endblock %}

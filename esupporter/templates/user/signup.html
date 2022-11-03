@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+
+<br><br>
+
+<div class="has-text-centered">
+    <h1 class="title">サインアップ</h1>
+</div>
+<form method="POST" class="box has-text-centered">
+    {% csrf_token %}
+    <div class="field">
+        <label class="label">名前</label>
+        <div class="control">
+           {{ form.name }}
+        </div>
+      </div>
+    <div class="field">
+        <label class="label">メールアドレス</label>
+        <div class="control">
+           {{ form.email }}
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">パスワード</label>
+        <div class="control">
+            {{ form.password1 }}
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">パスワード(確認)</label>
+        <div class="control">
+            {{ form.password2 }}
+        </div>
+      </div>
+    
+    <br></br>
+    <button type="submit" class="button is-primary">新規登録</button>
+    <a href="{% url 'index'%}" class="button is-primary">戻る</a>
+</form>
+
+{% endblock %}

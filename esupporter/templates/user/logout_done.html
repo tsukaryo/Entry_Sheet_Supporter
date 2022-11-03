@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<!-- コンテンツ -->
+{% block content %}
+<br><br>
+<div class="content">
+  <h1>ログアウト</h1>
+  <br>
+  <div class="notification is-danger">
+    <p>ログアウトしました。</p>
+    <p>ご利用ありがとうございました。</p>
+  </div>
+  <a href="{% url 'login' %}" class="button is-link">もう一度ログインする</a>
+</div>
+{% endblock %}

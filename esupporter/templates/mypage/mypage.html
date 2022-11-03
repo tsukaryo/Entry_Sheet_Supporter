@@ -1,0 +1,72 @@
+
+
+{% extends "base.html" %}
+<!-- コンテンツ -->
+{% block content %}
+{% load static %}
+<br><br>
+<div class="columns is-centered ">
+    <!-- 1列目 -->
+    <div class="column is-two-fifths"  style="background: rgb(249, 252, 252);">
+        <div class="card">
+            <div class="card-content">
+                 <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-128x128">
+                            <img src="{% static 'AI.jpeg' %}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">AI要約機能</p>
+                    </div>
+                </div>
+  
+                <div class="content">
+                    <p><strong>機械学習を使って、過去にエントリーシートに使用した文章を好きな文字数に要約します</strong></p>
+                    <br>
+                    <p>自動要約機能を使いたい方..!</p>
+                    <div class="block is-size5">
+                        <a href="{% url 'question_list' %}" class="tag is-primary is-size-5">こちら</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column is-two-fifths" style="background: rgb(249, 252, 252);">
+        <div class="card">
+            <div class="card-content">
+                 <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-128x128">
+                            <img src="{% static 'kanri.jpeg' %}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">応募先管理機能</p>
+                    </div>
+                </div>
+  
+                <div class="content">
+                    <p><strong>応募した企業のエントリー内容を管理します</strong></p>
+                    <br><br>
+                    <p>応募内容を管理したい方..!</p>
+                    <a href="{% url 'company_list' %}" class="tag is-primary is-size-5">こちら</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+<br><br>
+
+</div>
+    
+
+{% endblock %}

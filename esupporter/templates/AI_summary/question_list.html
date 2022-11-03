@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+
+<br>
+{% for message in messages %}
+<div class="columns is-centered ">
+    <div class="column is-11"  style="background: rgb(249, 252, 252);">
+        <div class="notification is-primary" class="mx-10">
+            <button class="delete"></button>
+            <h2 class="subtitle">{{ message }}</h2>
+        </div>
+    </div> 
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container">
+    <br></br>
+    
+ 
+    <div class ="block">
+        <div class="has-text-centered">
+            <h1 class="title"><strong>AI要約機能</strong></h1>
+            <h2 class="subtitle"><strong>要約したい質問をクリックして下さい。</strong></h2>
+        </div>
+        
+        <div class="has-text-right">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" name="SearchBox" type="text" placeholder="キーワードを入力"></input>
+                    </div>
+                    <div class="control">
+                        <button type="submit"class="button is-info"></i>検索</button>  
+                    </div>
+                </div>
+            </form> 
+        </div>
+
+    </div>    
+
+
+    <div class="block">
+        {% for question in object_list %}
+            <a href="{% url 'question_detail' pk=question.id %}" class = "box is-white">{{question.question}}</a>
+        {% endfor %}
+    </div>
+
+    <div class="block">
+        <a href="{% url 'create_question' %}" class="button is-primary">質問と回答を追加</a>
+        <a href="{% url 'mypage' %}" class="button is-primary">マイページへ戻る</a>
+    </div>
+    
+    <br>
+</div>
+
+    
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+
+    <br><br>
+<h1 class="title">企業追加</h1>
+
+<div class="block">
+    <h2 class="subtitle">企業名</h2>
+</div>
+
+<form action="{% url 'create_company' %}" method="POST">
+    {% csrf_token %}
+<div class="block">
+
+  {{ form.company_name|add_class:"textarea"|attr:"rows:1"}}
+
+</div>
+
+<div class="block">
+    <button type="submit" class="button is-success">企業を追加</button>
+</div>
+
+<div class="block">
+    <a href="{% url 'company_list' %}" class="tag">戻る</a>
+</div>
+
+</form>
+
+{% endblock %}
+

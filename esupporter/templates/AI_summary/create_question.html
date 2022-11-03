@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="container">
+    <br><br>
+<h1 class="title">質問追加</h1>
+
+<div class="block">
+    <h2 class="subtitle">質問</h2>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+<div class="block">
+    {{ form.question|add_class:"textarea"|attr:"rows:7"}}
+</div>
+
+<div class="block">
+    <h2 class="subtitle">回答</h2>
+</div>
+<div class="block">
+    {{ form.answer|add_class:"textarea"|attr:"rows:7"}}
+</div>
+
+<div class="block">
+    <button type="submit" class="button is-success">追加</button>
+</div>
+
+<div class="block">
+    <a href="{% url 'question_list' %}" class="tag">戻る</a>
+</div>
+
+</form>
+
+</div>
+
+{% endblock %}
